@@ -1,29 +1,29 @@
-name: Rain Reminder Bot
+name: Daily Weather Bot
 
 on:
-  workflow_dispatch: # This allows cron-job.org to trigger it
+  workflow_dispatch:       # Still keeps the manual button
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # 1. Downloads your repository files into the runner
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # 2. Sets up Python 
-      - name: Set up Python
+        
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # You can change this if you need a different version
-
-      # 3. Installs dependencies (if you have a requirements.txt file)
+          python-version: '3.10'
+          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      # 4. Executes your Python file
-      - name: Run script
+          pip install -r requirements.txt
+          
+      - name: Run main.py
+        env:
+          Bot_token: ${{ secrets.BOT_TOKEN }}
+          channel_id: ${{ secrets.CHANNEL_ID }}
+          API_KEY: ${{ secrets.API_KEY }}
         run: python main.py
