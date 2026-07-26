@@ -10,8 +10,8 @@ DISCORD_CHANNEL_ID=os.environ.get("channel_id")
 API_KEY=os.environ.get("API_KEY")
 
 parameter={
-    "lat":52.2297,
-    "lon":21.0122,
+    "lat":22,
+    "lon":88,
     "units":"metric",
     "lang":"en",
     "cnt":4,
